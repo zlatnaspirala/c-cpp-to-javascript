@@ -1,5 +1,5 @@
 
- #    Nikola Lukic emcc learning project     #
+ #    emcc learning project                 #
  ##   Basic examples porting with success   ##
  ###  Author of this project: Nikola Lukic ###
  ###  email: zlatnaspirala@gmail.com       ###
