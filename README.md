@@ -1,8 +1,8 @@
 
- #    emcc learning project                 #
- ##   Basic examples porting with success   ##
- ###  Author of this project: Nikola Lukic ###
- ###  email: zlatnaspirala@gmail.com       ###
+ #    emcc learning project                #
+ ####   Basic examples porting with success ####
+ ####  Author of this project: Nikola Lukic ####
+ ####  email: zlatnaspirala@gmail.com       ####
 -----------------------------------------------
 
 ### Structure of project example is: ###
