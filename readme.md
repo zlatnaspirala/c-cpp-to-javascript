@@ -6,13 +6,15 @@
  ###  email: zlatnaspirala@gmail.com       ###
 ++++++++++++++++++++++++++++++++++++++++++++++++
 
-Structure of project example is:
+ - Objective : Learn from base example samples in context of all game-dev interest functionality.
+
+ Structure of project example:
 
 <pre>
 
   root/
   |------build (Auto generated files)
-  |------source (any c or cpp source file)
+  |------<example_name> (any c or cpp source file)
   |------default.html (Minimal html template)
 
 </pre>
@@ -20,17 +22,52 @@ Structure of project example is:
 #### C GL Shader: ####
 
 ```
-  ./emcc sdl2-c-shader/sdl2glshader.c -s USE_SDL=2 -s LEGACY_GL_EMULATION=1  -s GL_UNSAFE_OPTS=0  -o build/sdl2.html
+  emcc sdl2-c-shader/sdl2glshader.c -s USE_SDL=2 -s LEGACY_GL_EMULATION=1  -s GL_UNSAFE_OPTS=0  -o sdl2-c-shader/build/sdl2.html
 ```
 
 #### Mouse events: ####
 ```
-  emcc mouse-events/test_html5_mouse.c -O2 -g1 --closure 1 -s DISABLE_DEPRECATED_FIND_EVENT_TARGET_BEHAVIOR=1 -DAUTOMATE_SUCCESS=1  -o build/tmouse.html
+  emcc mouse-events/test_html5_mouse.c -O2 -g1 --closure 1 -s DISABLE_DEPRECATED_FIND_EVENT_TARGET_BEHAVIOR=1 -DAUTOMATE_SUCCESS=1  -o mouse-events/build/tmouse.html
 ```
 
 #### Draw object, declare in typescript, opengles2 ####
 ```
-  emcc tests/webgl_draw_triangle.c  -lGL -s OFFSCREEN_FRAMEBUFFER=1 -DEXPLICIT_SWAP=1 -DDRAW_FROM_CLIENT_MEMORY=1 -s FULL_ES2=1  -o build/gles2test.html
+  emcc sdl-ts-declare/webgl_draw_triangle.c  -lGL -s OFFSCREEN_FRAMEBUFFER=1 -DEXPLICIT_SWAP=1 -DDRAW_FROM_CLIENT_MEMORY=1 -s FULL_ES2=1  -o sdl-ts-declare/build/gles2test.html
+```
+
+#### Keyboard (c) ####
+```
+  emcc keyboard-c/test_keyboard_codes.c -O2 -g1 --closure 1 -s DISABLE_DEPRECATED_FIND_EVENT_TARGET_BEHAVIOR=1 -DAUTOMATE_SUCCESS=1  -o keyboard-c/build/keyboard-mouse.html
+```
+
+#### Write file (cpp) ####
+```
+  emcc write-file/write_file.cpp -s ENVIRONMENT=web --closure 1 -o write-file/build/test.html
+```
+
+#### Draw trianlge object, (c, opengles2) ####
+```
+  emcc webgl-triangle/webgl_draw_triangle.c  -lGL -s OFFSCREEN_FRAMEBUFFER=1 -DEXPLICIT_SWAP=1 -DDRAW_FROM_CLIENT_MEMORY=1 -s FULL_ES2=1  -o webgl-triangle/build/test.html
+```
+
+#### Test mem-cpu ####
+```
+  emcc cpu-mem/benchmark_memcpy.cpp -DBUILD_FOR_SHELL -I tests/tick.h -s WASM=0 -s TOTAL_MEMORY=512MB --memory-init-file 1  -o cpu-mem/nik.html
+```
+
+#### Test bullet ####
+```
+    Building.emcc(path_from_root('tests', 'bullet_hello_world.cpp'), ['-s', 'USE_BULLET=1'], output_filename='a.out.js')
+    self.assertContained('BULLET RUNNING', run_process(JS_ENGINES[0] + ['a.out.js'], stdout=PIPE, stderr=PIPE).stdout)
+
+    emcc bullet-test/bullet_hello_world.cpp -s USE_BULLET=1 -o a.out.js
+
+    emcc bullet-test/bullet_hello_world.cpp -s USE_BULLET=1 -o bullet-test/build/a.html
+```
+
+#### no work 1 ####
+```
+  emcc test5/test_glfw_dropfile.c -s USE_GLFW=3 -lglfw -lGL
 ```
 
 #### Not succesed for now ####
