@@ -55,7 +55,7 @@
   emcc cpu-mem/benchmark_memcpy.cpp -DBUILD_FOR_SHELL -I tests/tick.h -s WASM=0 -s TOTAL_MEMORY=512MB --memory-init-file 1  -o cpu-mem/nik.html
 ```
 
-#### Test bullet ####
+#### Test bullet ! ####
 ```
     Building.emcc(path_from_root('tests', 'bullet_hello_world.cpp'), ['-s', 'USE_BULLET=1'], output_filename='a.out.js')
     self.assertContained('BULLET RUNNING', run_process(JS_ENGINES[0] + ['a.out.js'], stdout=PIPE, stderr=PIPE).stdout)
@@ -63,6 +63,14 @@
     emcc bullet-test/bullet_hello_world.cpp -s USE_BULLET=1 -o a.out.js
 
     emcc bullet-test/bullet_hello_world.cpp -s USE_BULLET=1 -o bullet-test/build/a.html
+```
+
+#### gl-matrix-identity-c ####
+
+```
+  // self.btest('gl_matrix_identity.c', expected=['-1882984448', '460451840', '1588195328', '2411982848'], args=['-s', 'LEGACY_GL_EMULATION=1', '-lGL', '-lSDL'])
+
+  emcc gl-matrix-identity-c/gl-matrix-identity.c -s LEGACY_GL_EMULATION=1 -lGL -lSDL -o gl-matrix-identity-c/build/test.html -O2
 ```
 
 #### no work 1 ####
@@ -73,7 +81,7 @@
 #### Not succesed for now ####
 
 ```
-  emcc tests/sdl_image.c -o emcc -s ASSERTIONS=2 tests/sdl_image.c -o TEST.html -s -lSDL -s -lGL -USE_LIBPNG --memory-init-file 1 --preload-file tests --use-preload-pluginsTEST.html -s WASM=O2 -s -lSDL -s -lGL -USE_LIBPNG=1  --preload-file tests --use-preload-plugins
+  emcc tests/sdl_image.c -o emcc -s ASSERTIONS=2 tests/sdl_image.c -o TEST.html -s -lSDL -s -lGL -USE_LIBPNG --memory-init-file 1 --preload-file tests --use-preload-plugins TEST.html -s WASM=O2 -s -lSDL -s -lGL -USE_LIBPNG=1  --preload-file tests --use-preload-plugins
 
   ! memallo error
 
@@ -83,6 +91,58 @@
 
     https://stackoverflow.com/questions/57290635/rewrite-python-script-runner-browser-and-make-inline-emcc-command-for-bui/57291122?noredirect=1#comment101078100_57291122
 
+
+#### GLFW ####
+
+```
+1)  Test
+     emcc glfw_events.c -s USE_GLFW=3 -DUSE_GLFW=3 -lglfw -lGL  -o build/events.html
+2)
+  emcc clientside_vertex_arrays_es3.c -s USE_WEBGL2=1 -s FULL_ES2=1 -s FULL_ES3=1 -s USE_GLFW=3 -lglfw -lGLESv2  -o build/nik2.html --preload-file res
+
+```
+
+### Games Session ###
+
+#### Simple ball game ####
+
+ ```
+   emcc test.c -s -lGL -lGLU  -o build/nikolatest.html -std=c11 -s LEGACY_GL_EMULATION=1  -s GL_UNSAFE_OPTS=0
+ ```
+
+#### xo-console-log game ####
+
+```
+  emcc xo.cpp -o build/xo.html
+```
+
+#### Test game ####
+
+```
+  emcc projS.cpp -s USE_SDL=2 -lSDL --preload-file data -s USE_SDL_IMAGE=2 -s --no-heap-copy --use-preload-plugins -o nikolatest.html -s GL_UNSAFE_OPTS=0
+```
+
+
+### Help ###
+
+  #### Args ####
+
+```
+  -std= XXX
+
+  note: use 'c89', 'c90', or 'iso9899:1990' for 'ISO C 1990' standard
+  note: use 'iso9899:199409' for 'ISO C 1990 with amendment 1' standard
+  note: use 'gnu89' or 'gnu90' for 'ISO C 1990 with GNU extensions' standard
+  note: use 'c99' or 'iso9899:1999' for 'ISO C 1999' standard
+  note: use 'gnu99' for 'ISO C 1999 with GNU extensions' standard
+  note: use 'c11' or 'iso9899:2011' for 'ISO C 2011' standard
+  note: use 'gnu11' for 'ISO C 2011 with GNU extensions' standard
+  note: use 'c17', 'iso9899:2017', 'c18', or 'iso9899:2018' for 'ISO C 2017' standard
+  note: use 'gnu17' or 'gnu18' for 'ISO C 2017 with GNU extensions' standard
+  note: use 'c2x' for 'Working Draft for ISO C2x' standard
+  note: use 'gnu2x' for 'Working Draft for ISO C2x with GNU extensions' standard
+
+```
 
 ### LICENCE: ###
 
