@@ -50,6 +50,16 @@
   emcc webgl-triangle/webgl_draw_triangle.c  -lGL -s OFFSCREEN_FRAMEBUFFER=1 -DEXPLICIT_SWAP=1 -DDRAW_FROM_CLIENT_MEMORY=1 -s FULL_ES2=1  -o webgl-triangle/build/test.html
 ```
 
+
+#### geometry cube SDL ####
+
+```
+ // self.btest('cubegeom_pre3.c', reference='cubegeom_pre2.png', args=['-s', 'LEGACY_GL_EMULATION=1', '-lGL', '-lSDL'])
+
+ emcc cubegeom_pre3.c -s LEGACY_GL_EMULATION=1 -lGL -lSDL -o build/test.html preload-file res
+
+```
+
 #### Test mem-cpu ####
 ```
   emcc cpu-mem/benchmark_memcpy.cpp -DBUILD_FOR_SHELL -I tests/tick.h -s WASM=0 -s TOTAL_MEMORY=512MB --memory-init-file 1  -o cpu-mem/nik.html
