@@ -78,9 +78,7 @@
 #### gl-matrix-identity-c ####
 
 ```
-  // self.btest('gl_matrix_identity.c', expected=['-1882984448', '460451840', '1588195328', '2411982848'], args=['-s', 'LEGACY_GL_EMULATION=1', '-lGL', '-lSDL'])
-
-  emcc gl-matrix-identity-c/gl-matrix-identity.c -s LEGACY_GL_EMULATION=1 -lGL -lSDL -o gl-matrix-identity-c/build/test.html -O2
+  emcc gl_matrix_identity.c -s LEGACY_GL_EMULATION=1 -lGL -s USE_SDL=2 -o build/test.html -s GL_UNSAFE_OPTS=0
 ```
 
 #### no work 1 ####
@@ -117,7 +115,7 @@
 #### Simple ball game ####
 
  ```
-   emcc test.c -s -lGL -lGLU  -o build/nikolatest.html -std=c11 -s LEGACY_GL_EMULATION=1  -s GL_UNSAFE_OPTS=0
+   emcc test.c -s -lGL -o build/nikolatest.html -std=c11 -s LEGACY_GL_EMULATION=1  -s GL_UNSAFE_OPTS=0
  ```
 
 #### xo-console-log game ####
@@ -132,10 +130,26 @@
   emcc projS.cpp -s USE_SDL=2 -lSDL --preload-file data -s USE_SDL_IMAGE=2 -s --no-heap-copy --use-preload-plugins -o nikolatest.html -s GL_UNSAFE_OPTS=0
 ```
 
+#### SDL tutorials ####
+
+ Image example :
+```
+    emcc image.cpp -o -s ASSERTIONS=2 -o build/TEST.html -s -lSDL -s -lGL -USE_LIBPNG --memory-init-file 1 --preload-file res --use-preload-plugins -s WASM=O2 -s -lSDL -s -lGL -USE_LIBPNG=1
+```
+
+opengl
+```
+  emcc image.cpp -o -s ASSERTIONS=2 -o build/TEST.html -s -lSDL -s -lGL -USE_LIBPNG --memory-init-file 1 --preload-file res --use-preload-plugins -s WASM=O2 -s -lSDL -s -lGL -USE_LIBPNG=1
+
+    self.btest('glfw.c', '1', args=['-s', 'LEGACY_GL_EMULATION=1', '-lglfw', '-lGL'])
+    self.btest('glfw.c', '1', args=['-s', 'LEGACY_GL_EMULATION=1', '-s', 'USE_GLFW=2', '-lglfw', '-lGL'])
+
+    emcc opengl.cpp -o1 -s LEGACY_GL_EMULATION=1 --preload-file data -s USE_GLFW=2 -lglfw -lGL
+```
 
 ### Help ###
 
-  #### Args ####
+#### Args ####
 
 ```
   -std= XXX
