@@ -1,9 +1,9 @@
 
 ++++++++++++++++++++++++++++++++++++++++++++++++
  #    Nikola Lukic emcc learning project     #
- ##   Basic examples porting with success   ##
- ###  Author of this project: Nikola Lukic ###
- ###  email: zlatnaspirala@gmail.com       ###
+ ###   Basic examples porting with success   ###
+ ####  Author of this project: Nikola Lukic ####
+ #####  email: zlatnaspirala@gmail.com       #####
 ++++++++++++++++++++++++++++++++++++++++++++++++
 
  - Objective : Learn from base example samples in context of all game-dev interest functionality.
