@@ -1,0 +1,6 @@
+
+test:
+
+	g++ -c myLib.cpp
+	g++ -c mainApp.cpp
+	g++ -o nik mainApp.o  myLib.o
