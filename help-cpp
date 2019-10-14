@@ -1,0 +1,30 @@
+
+
+++++++
++HELP+
+++++++
+
+Check OS:
+```
+uname -sr
+```
+
+
+Check compiler ver:
+```
+g++ --version
+```
+
+
+Compile : 
+```
+g++ -o myprog.exe main.cpp
+```
+
+
+Compile more: 
+```
+g++ -c file1.cpp
+g++ -c file2.cpp
+g++ -o myprog.exe file1.o file2.o
+```
