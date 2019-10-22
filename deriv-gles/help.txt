@@ -1,0 +1,6 @@
+
+
+
+ Origin is "hello_world_gles_deriv.c" .
+
+ Others files are separated code .
