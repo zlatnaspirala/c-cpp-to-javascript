@@ -1,0 +1,42 @@
+
+static const char vertex_shader[] =
+    "attribute vec3 position;\n"
+    "attribute vec3 normal;\n"
+    "\n"
+    "uniform mat4 ModelViewProjectionMatrix;\n"
+    "uniform mat4 NormalMatrix;\n"
+    "uniform vec4 LightSourcePosition;\n"
+    "uniform vec4 MaterialColor;\n"
+    "\n"
+    "varying vec4 Color;\n"
+    "\n"
+    "void main(void)\n"
+    "{\n"
+    "    // Transform the normal to eye coordinates\n"
+    "    vec3 N = normalize(vec3(NormalMatrix * vec4(normal, 1.0)));\n"
+    "\n"
+    "    // The LightSourcePosition is actually its direction for directional light\n"
+    "    vec3 L = normalize(LightSourcePosition.xyz);\n"
+    "\n"
+    "    // Multiply the diffuse value by the vertex color (which is fixed in this case)\n"
+    "    // to get the actual color that we will use to draw this vertex with\n"
+    "    float diffuse = max(dot(N, L), 0.0);\n"
+    "    Color = diffuse * MaterialColor;\n"
+    "\n"
+    "    // Transform the position to clip coordinates\n"
+    "    gl_Position = ModelViewProjectionMatrix * vec4(position, 1.0);\n"
+    "}";
+
+static const char fragment_shader[] =
+    "#ifdef GL_ES\n"
+    "#extension GL_OES_standard_derivatives : enable\n"
+    "precision mediump float;\n"
+    "#endif\n"
+    "varying vec4 Color;\n"
+    "\n"
+    "void main(void)\n"
+    "{\n"
+    "    vec2 d = dFdx(Color.xy);\n"
+    "    gl_FragColor = Color;\n"
+    "}";
+
