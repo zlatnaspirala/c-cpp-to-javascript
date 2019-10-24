@@ -1,4 +1,5 @@
 
+#include "calculator.c"
 
 /**
  * Draws everything
@@ -8,9 +9,7 @@ static void
 _DRAW(void)
 {
 
-  nidza_red[2] += nidza_changeRedco;
-
-  const static GLfloat green[4] = {0.0, 0.8, 0.2, 1.0};
+  const static GLfloat green[4] = {0.0, 1.0, 0.0, 1.0};
   const static GLfloat blue[4] = {0.2, 0.2, 1.0, 1.0};
 
   GLfloat transform[16];
@@ -28,10 +27,12 @@ _DRAW(void)
   /* Draw the gears */
   //                                      x    y   angle      color
 
+  // nidza_gear1 = nidza_create_gear(0.3, 1.0, 1.0, 15, 1);
+
   float step = 2 * PI / 20; // see note 1
   float h = 0;
-  float k = -1;
-  float r = 7;
+  float k = -1; // + getMyX();
+  float r = 5 + getMyX();
   float angleDir = -1;
 
   for (float theta = 0; theta < 2 * PI; theta += step)

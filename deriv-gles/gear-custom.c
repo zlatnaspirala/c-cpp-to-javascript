@@ -5,6 +5,9 @@ static GLfloat nidzaAngle = 0.0;
 /** The view rotation [x, y, z] */
 static GLfloat nidzaView_rot[3] = {0.0, 0.0, 0.0};
 
+GLfloat nidza_red[4] = {0.0, 1.0, 0.0, 1.0};
+double nidza_changeRedco = 0.0001;
+
 /**
  * Struct describing the vertices in triangle strip
  */
@@ -58,6 +61,16 @@ nidza_vert(NidzaGearVertex *v, GLfloat x, GLfloat y, GLfloat z, GLfloat n[3])
   v[0][5] = n[2];
 
   return v + 1;
+
+  /*
+  // ori
+    v[0][0] = x;
+  v[0][1] = y;
+  v[0][2] = z;
+  v[0][3] = n[0];
+  v[0][4] = n[1];
+  v[0][5] = n[2];
+  */
 }
 
 static void
@@ -72,10 +85,33 @@ nidza_gears_idle(void)
   dt = t - tRot0;
   tRot0 = t;
 
+
   /* advance rotation for next frame */
   nidzaAngle += 70.0 * dt; /* 70 degrees per second */
   if (nidzaAngle > 3600.0)
     nidzaAngle -= 3600.0;
+
+  //-------------------------------
+  if (nidza_red[2] > 1)
+  {
+    nidza_red[2] = 0;
+  }
+
+  if (nidza_red[1] > 1)
+  {
+    nidza_red[1] = 0;
+  }
+
+  if (nidza_red[0] > 1)
+  {
+    nidza_red[0] = 0;
+  }
+
+ // nidza_red[0] += nidza_changeRedco;
+ //  nidza_red[1] += nidza_changeRedco;
+ // nidza_red[2] += nidza_changeRedco;
+
+  //////////////////////////////////////////
 
   glutPostRedisplay();
   frames++;
@@ -124,8 +160,8 @@ nidza_create_gear(GLfloat inner_radius, GLfloat outer_radius, GLfloat width,
 
   /* Calculate the radii used in the gear */
   r0 = inner_radius;
-  r1 = outer_radius - tooth_depth / 2.0;
-  r2 = outer_radius + tooth_depth / 2.0;
+  r1 = outer_radius - tooth_depth / 2;
+  r2 = outer_radius + tooth_depth / 2;
 
   da = 2.0 * M_PI / teeth / 4.0;
 
@@ -158,7 +194,7 @@ nidza_create_gear(GLfloat inner_radius, GLfloat outer_radius, GLfloat width,
     normal[1] = (y);        \
     normal[2] = (z);        \
   } while (0)
-
+//                                                                                                 depth exclude 0.5
 #define NIDZA_GEAR_VERT(v, point, sign) nidza_vert((v), p[(point)].x, p[(point)].y, (sign)*width * 0.5, normal)
 
 #define START_STRIP                                     \
@@ -281,7 +317,6 @@ nidza_draw_gear(struct nidza_gear *gear, GLfloat *transform,
                 GLfloat x, GLfloat y, GLfloat angle, const GLfloat color[4])
 {
 
-
   /**
    * update idle here
    * */
@@ -333,14 +368,14 @@ nidza_draw_gear(struct nidza_gear *gear, GLfloat *transform,
   int n;
   for (n = 0; n < gear->nstrips; n++)
     glDrawArrays(GL_TRIANGLE_STRIP, gear->strips[n].first, gear->strips[n].count);
+    // glDrawArrays(GL_TRIANGLE_STRIP, gear->strips[n].first, gear->strips[n].count);
 
   /* Disable the attributes */
   glDisableVertexAttribArray(1);
   glDisableVertexAttribArray(0);
 }
 
-GLfloat nidza_red[4] = {0.8, 0.1, 0.0, 1.0};
-double nidza_changeRedco = 0.01;
+
 
 /**
  * Handles a new window size or exposure.

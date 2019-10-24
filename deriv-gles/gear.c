@@ -126,7 +126,7 @@ create_gear(GLfloat inner_radius, GLfloat outer_radius, GLfloat width,
     normal[2] = (z);        \
   } while (0)
 
-#define GEAR_VERT(v, point, sign) vert((v), p[(point)].x, p[(point)].y, (sign)*width * 0.5, normal)
+#define GEAR_VERT(v, point, sign) vert((v), p[(point)].x, p[(point)].y, (sign)*width * 0.95, normal)
 
 #define START_STRIP                                     \
   do                                                    \
@@ -290,6 +290,7 @@ draw_gear(struct gear *gear, GLfloat *transform,
   int n;
   for (n = 0; n < gear->nstrips; n++)
     glDrawArrays(GL_TRIANGLE_STRIP, gear->strips[n].first, gear->strips[n].count);
+    // glDrawArrays(GL_TRIANGLE_STRIP, gear->strips[n].first, gear->strips[n].count);
 
   /* Disable the attributes */
   glDisableVertexAttribArray(1);
