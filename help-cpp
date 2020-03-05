@@ -1,5 +1,4 @@
 
-
 ++++++
 +HELP+
 ++++++
@@ -9,20 +8,17 @@ Check OS:
 uname -sr
 ```
 
-
 Check compiler ver:
 ```
 g++ --version
 ```
 
-
-Compile : 
+Compile :
 ```
 g++ -o myprog.exe main.cpp
 ```
 
-
-Compile more: 
+Compile more:
 ```
 g++ -c file1.cpp
 g++ -c file2.cpp

@@ -33,6 +33,9 @@
  *   * Add comments.
  * Alexandros Frantzis <alexandros.frantzis@linaro.org>
  * Jul 13, 2010
+ *
+ * [WIP] 2020 Nikola Lukic zlatnaspirala@gmail.com
+ * Nice start for full generic graphics from c to js.
  */
 
 #define GL_GLEXT_PROTOTYPES
@@ -66,7 +69,6 @@
 #include <math.h>
 #define PI 3.14159265
 
-
 #include "shaders.c"
 
 /** The gears */
@@ -77,7 +79,6 @@ static struct gear *gear1, *gear2, *gear3;
 static struct nidza_gear *nidza_gear1, *nidza_gear2, *nidza_gear3;
 
 #include "gear-custom.c"
-
 #include "draw.c"
 
 int main(int argc, char *argv[])
