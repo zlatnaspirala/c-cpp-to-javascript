@@ -34,6 +34,10 @@
   -DAUTOMATE_SUCCESS=1  -o mouse-events/build/tmouse.html
 ```
 
+```copy
+  emcc mouse-events/test_html5_mouse.c -O2 -g1 --closure 1 -s DISABLE_DEPRECATED_FIND_EVENT_TARGET_BEHAVIOR=1 -DAUTOMATE_SUCCESS=1  -o mouse-events/uild/tmouse.html
+```
+
 ##### Draw object, declare in typescript, opengles2 #####
 ```
   emcc sdl-ts-declare/webgl_draw_triangle.c -lGL
