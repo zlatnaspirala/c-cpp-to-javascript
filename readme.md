@@ -103,6 +103,10 @@
   -lGL -s USE_SDL=2 -o build/test.html -s GL_UNSAFE_OPTS=0
 ```
 
+```
+  emcc gl_matrix_identity.c -s LEGACY_GL_EMULATION=1 -lGL -s USE_SDL=2 -o build/test.html -s GL_UNSAFE_OPTS=0
+```
+
 ##### opengles in c #####
 ```
   emcc hello_world_gles_deriv.c -DHAVE_BUILTIN_SINCOS -lGL
